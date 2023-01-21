@@ -12,6 +12,6 @@ class Space extends Model
 
     protected $fillable = [
         'name',
-        'space',
+        'space_number',
     ];
 }
