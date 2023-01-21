@@ -14,14 +14,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('failed_jobs', function (Blueprint $collection) {
+        Schema::create('vehicles', function (Blueprint $collection) {
             // $collection->id();
-            $collection->string('uuid')->unique();
-            $collection->text('connection');
-            $collection->text('queue');
-            $collection->longText('payload');
-            $collection->longText('exception');
-            $collection->timestamp('failed_at')->useCurrent();
+            $collection->index('user_id');
+            $collection->string('name');
+            $collection->string('vehicle_type');
+            $collection->string('plate_number')->unique();
+            $collection->timestamps();
         });
     }
 
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('failed_jobs');
+        Schema::dropIfExists('vehicles');
     }
 };
