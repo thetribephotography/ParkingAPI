@@ -23,6 +23,6 @@ class Parking extends Model
     }
 
     public function Space(){
-        return $this->belongsTo(Space::class, 'space_id', 'space_number');
+        return $this->hasMany(Space::class, '_id', 'space_id');
     }
 }
