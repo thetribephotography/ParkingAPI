@@ -14,16 +14,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $collection) {
-            $collection->string('two_factor_secret')->after('password')
+            $collection->string('two_factor_secret')
                     ->nullable();
 
             $collection->string('two_factor_recovery_codes')
-                    ->after('two_factor_secret')
                     ->nullable();
 
             if (Fortify::confirmsTwoFactorAuthentication()) {
                 $collection->timestamp('two_factor_confirmed_at')
-                        ->after('two_factor_recovery_codes')
                         ->nullable();
             }
         });
