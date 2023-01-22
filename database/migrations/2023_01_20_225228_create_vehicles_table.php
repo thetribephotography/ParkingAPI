@@ -21,6 +21,7 @@ return new class extends Migration
             $collection->string('vehicle_type');
             $collection->string('plate_number')->unique();
             $collection->timestamps();
+            $collection->softDeletes();
         });
     }
 

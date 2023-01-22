@@ -19,6 +19,7 @@ return new class extends Migration
             $collection->string('name');
             $collection->array('space')->nullable();
             $collection->timestamps();
+            $collection->softDeletes();
         });
     }
 
