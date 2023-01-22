@@ -22,6 +22,7 @@ return new class extends Migration
             $collection->timestamp('entered_at')->nullable();
             $collection->timestamp('departed_at')->nullable();
             $collection->timestamps();
+            $collection->softDeletes();
         });
     }
 

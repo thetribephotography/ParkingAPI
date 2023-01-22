@@ -22,6 +22,7 @@ return new class extends Migration
             $collection->string('password');
             $collection->rememberToken();
             $collection->timestamps();
+            $collection->softDeletes();
         });
     }
 

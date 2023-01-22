@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 // use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
 class Parking extends Model
 {
@@ -16,6 +17,7 @@ class Parking extends Model
         'space_number',
         'entered_at',
         'departed_at',
+        'deleted_at',
     ];
 
     public function Vehicle(){
