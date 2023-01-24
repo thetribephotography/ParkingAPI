@@ -46,7 +46,7 @@ class VehicleController extends Controller
 
     
     //VIEW SPECIFIC VEHICLE
-    public function show(Request $request, $id){
+    public function show($id){
         $show_one = Vehicle::where('_id', $id)->first();
 
         return response()->json($show_one);
@@ -56,7 +56,9 @@ class VehicleController extends Controller
 
 
     //UPDATE/EDIT SPECIFIC VEHICLE
-    public function edit(){
+    public function edit(Request $request, $id){
+        $show_one = Vehicle::where('_id', $id)->first();
+        
         if($request->all() == ''){
             return response()->json(['No Updates were made']);
         } else {
