@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ParkingController;
+use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,5 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return ['Laravel' => app()->version()];
 });
+
+
 
 require __DIR__.'/auth.php';
