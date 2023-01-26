@@ -11,5 +11,12 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    //
+    public function showone($id){
+        $user = User::where('_id', $id)->first();
+
+        return response()->json($user);
+    }
+
+
+    // public function 
 }

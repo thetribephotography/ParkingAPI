@@ -13,7 +13,7 @@ class Space extends Model
 
     protected $fillable = [
         'name',
-        'space_number',
+        'space',
         'deleted_at',
     ];
 }
