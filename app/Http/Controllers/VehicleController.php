@@ -14,7 +14,7 @@ class VehicleController extends Controller
 {
     //REGISTER VEHICLE
     public function register(Request $request){
-        $validated = $request->validated([
+        $validated = $request->validate([
             'name' => 'required',
             'vehicle_type' => 'required',
             'plate_number' => 'required',
@@ -80,4 +80,5 @@ class VehicleController extends Controller
 
         return response()->json(['Successfully Deleted']);
     }
+
 }

@@ -31,5 +31,6 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     Route::get('/vehicle_view', [VehicleController::class, 'view']);
     Route::get('/vehicle_show{id}', [VehicleController::class, 'show']);
     Route::post('/vehicle_edit{id}', [VehicleController::class, 'edit']);
+    Route::get('/user_show_all', [UserController::class, 'showall']);
 
 require __DIR__.'/auth.php';
