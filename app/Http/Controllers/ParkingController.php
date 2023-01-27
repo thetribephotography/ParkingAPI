@@ -66,9 +66,69 @@ class ParkingController extends Controller
 
 
     public function check($id){
-        $space = Space::where('_id', $id)->first();
 
+
+        // checks the parking table for currently ocuupied spaces for a particular park
+        $closed = Parking::whereNull('left_at')->where('space_id', $id)->get();
+
+        // finds the specific Park and assigns the space array to a variable
+        $space_id = Space::where('_id', $id)->first();
+            $space_num = $space_id->space;
+
+            //loops through the occupied spaces instance and gets the space number and stores in an array
+            $closed_num = array();
+            foreach($closed as $closed){
+                $closed_num[] = $closed->space_number;
+            }
+
+            //picks the numbers that are only found in the $space_num array variable when compared to the $closed_num array and send response in json
+             $final = array_diff($space_num, $closed_num);
+
+            return response()->json($final);
+
+
+
+
+
+                    // $validate = $request->validate([
+        //     'vehicle_id' => 'required',
+        //     // 'space_name' => 'required',
+        // ]); 
+
+        // $space_name = $request->space_name;
+
+        // $space_num = Space::where('id', $space_name)->first();
+
+        // $space_id = Space::where('_id', $id)->first();
+
+
+
+        // getting space_id in particular
+        // $space_id = $space_num->_id;
+
+        //getting space array
+        // $space = $space_id->space;
         
+        //time 
+        //  $time = Carbon::now()->subHour();
+        
+
+        // $empty = null;
+
+        // for ($i = 0; $i < count($space); $i++) {
+        // if ($space[$i] === null && $spaces[$i]['updated_at'] >= $time) {
+        //     $empty = $space[$i];
+        //     break;
+
+        //     return response()->json(['Please Park at Space', $empty]);
+
+        // }if(!$empty) {
+        //     return response()->json(['No Space found.....Kindly Wait']);
+        //     }
+        // }
+
+
+
 
     }
 }
