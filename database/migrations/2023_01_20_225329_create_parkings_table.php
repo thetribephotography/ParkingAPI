@@ -16,6 +16,7 @@ return new class extends Migration
     {
         Schema::create('parkings', function (Blueprint $collection) {
             // $collection->id();
+            $collection->index('user_id');
             $collection->index('vehicle_id');
             $collection->index('space_id');
             $collection->array('space_number');
