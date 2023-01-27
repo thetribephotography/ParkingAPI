@@ -127,8 +127,9 @@ class ParkingController extends Controller
         //     }
         // }
 
-
-
-
     }
+
+        public function park($id){
+            
+        }
 }
