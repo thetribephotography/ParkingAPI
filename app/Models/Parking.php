@@ -12,6 +12,7 @@ class Parking extends Model
     use HasFactory;
 
         protected $fillable = [
+        'user_id',
         'vehicle_id',
         'space_id',
         'space_number',
@@ -26,5 +27,9 @@ class Parking extends Model
 
     public function Space(){
         return $this->hasMany(Space::class, '_id', 'space_id');
+    }
+
+    public function User(){
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

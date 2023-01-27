@@ -81,4 +81,9 @@ class VehicleController extends Controller
         return response()->json(['Successfully Deleted']);
     }
 
+    //CHOOSE VEHICLE AND SAVE IN SESSION
+    public function store(Request $request){
+        
+    }
+
 }

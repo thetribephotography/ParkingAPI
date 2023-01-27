@@ -64,7 +64,6 @@ class ParkingController extends Controller
     }
 
 
-
     public function check($id){
 
 
@@ -129,7 +128,24 @@ class ParkingController extends Controller
 
     }
 
-        public function park($id){
+        public function park(Request $request){
+            $validated = $request->validate([
+                'space_num' => 'required',
+                'vehicle_name' => 'required',
+            ]);
+
+            $user = Auth::id();
+            $time = Carbon
             
+            $vehicle = $request->vehicle_name;
+            $vehicle_name = Vehicle::where('_id', $vehicle && '_id', $user )->get();
+
+            $store = new Parking;
+            $store->user_id = $user;
+            $store->vehicle_id = 
+            $store->space_id = 
+            $store->space_number = 
+            $store->entered_at = 
+
         }
 }
