@@ -10,6 +10,7 @@ use App\Models\Parking;
 use App\Models\User;
 use App\Models\Vehicle;
 use App\Models\Space;
+use Carbon\Carbon;
 
 class ParkingController extends Controller
 {
@@ -83,6 +84,8 @@ class ParkingController extends Controller
             //picks the numbers that are only found in the $space_num array variable when compared to the $closed_num array and send response in json
              $final = array_diff($space_num, $closed_num);
 
+             $this->park($space_id);
+
             return response()->json($final);
 
 
@@ -128,24 +131,30 @@ class ParkingController extends Controller
 
     }
 
-        public function park(Request $request){
+        public function park(Request $request, $space_id){
             $validated = $request->validate([
                 'space_num' => 'required',
                 'vehicle_name' => 'required',
             ]);
 
             $user = Auth::id();
-            $time = Carbon
+            $time = Carbon::now();
+
+            // $space_num = Space::where('')
             
-            $vehicle = $request->vehicle_name;
-            $vehicle_name = Vehicle::where('_id', $vehicle && '_id', $user )->get();
+            // $vehicle = $request->vehicle_name;
+            // $vehicle_name = Vehicle::where('_id', $vehicle && '_id', $user )->get();
+
+            $sess_vehicle = Session::get('vehicle_id');
 
             $store = new Parking;
             $store->user_id = $user;
-            $store->vehicle_id = 
-            $store->space_id = 
-            $store->space_number = 
-            $store->entered_at = 
+            $store->vehicle_id = $sess_vehicle;
+            $store->space_id = $space_id;
+            $store->space_number = $request->space_num;
+            $store->entered_at = $time;
+
+            return response()->json(['Saved Successfully']);
 
         }
 }

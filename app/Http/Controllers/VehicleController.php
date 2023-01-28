@@ -82,8 +82,11 @@ class VehicleController extends Controller
     }
 
     //CHOOSE VEHICLE AND SAVE IN SESSION
-    public function store(Request $request){
-        
+    public function store(Request $request, $id){
+
+        $vehicle = Vehicle::where('_id', $id)->first();
+
+        session()->put('vehicle_id', $vehicle);
     }
 
 }
