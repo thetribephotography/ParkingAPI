@@ -157,4 +157,32 @@ class ParkingController extends Controller
             return response()->json(['Saved Successfully']);
 
         }
+
+        public function history(){
+            $user = Auth::id();
+
+            $history = Parking::where('user_id', $user)->get();
+
+            return response()->json($history);
+        }
+
+        public function view_one($id){
+            $view = Parking::where('_id', $id)->first();
+
+            return response()->json($view);
+        }
+
+        public function end($id){
+            $depart = Parking::where('_id', $id)->first();
+
+            $end_time = Carbon::now();
+
+            $depart->departed_at = $end_time;
+
+            $depart->update();
+
+            return response()->json(['Kindly Vacate Your Parked Area Immediately.....Thank You!!']);
+
+
+        }
 }
