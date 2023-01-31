@@ -12,7 +12,8 @@ use App\Models\Vehicle;
 
 class VehicleController extends Controller
 {
-    //REGISTER VEHICLE
+
+    // REGISTER VEHICLE
     public function register(Request $request){
         $validated = $request->validate([
             'name' => 'required',
@@ -35,7 +36,7 @@ class VehicleController extends Controller
     }
 
     
-    //VIEW ALL VEHICLES
+    // VIEW ALL VEHICLES
     public function view(){
         $user = Auth::id();
 
@@ -45,7 +46,7 @@ class VehicleController extends Controller
     }
 
     
-    //VIEW SPECIFIC VEHICLE
+    // VIEW SPECIFIC VEHICLE
     public function show($id){
         $show_one = Vehicle::where('_id', $id)->first();
 
@@ -54,8 +55,7 @@ class VehicleController extends Controller
     }
 
 
-
-    //UPDATE/EDIT SPECIFIC VEHICLE
+    // UPDATE/EDIT SPECIFIC VEHICLE
     public function edit(Request $request, $id){
         $show_one = Vehicle::where('_id', $id)->first();
         
@@ -74,19 +74,27 @@ class VehicleController extends Controller
     }
 
 
-    //DELETE VEHICLE
+    // DELETE VEHICLE
     public function delete($id){
         $delete = Vehicle::where('_id', $id)->delete();
 
         return response()->json(['Successfully Deleted']);
     }
 
-    //CHOOSE VEHICLE AND SAVE IN SESSION
-    public function store(Request $request, $id){
+
+    // CHOOSE VEHICLE AND SAVE IN SESSION
+    public function store(Request $request){
+        $validated = $request->validate([
+            'vehicle' => 'required',
+        ]);
+
+        $id = $request->vehicle;
 
         $vehicle = Vehicle::where('_id', $id)->first();
 
         session()->put('vehicle_id', $vehicle);
+
+        return response()->json(['I Must Say.....Nice Car!']);
     }
 
 }
