@@ -1,5 +1,4 @@
-Basically an API that allocates convenient parking space based availability and relative location:::
-Database:: MongoDB 
+Parking API that streamlines the parking process for drivers. Built with Laravel and MongoDB as the backend, this API provides a quick and easy solution for locating a vacant parking spot.
 
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
