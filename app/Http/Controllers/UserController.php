@@ -11,10 +11,19 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    public function showone($id){
-        $user = User::where('_id', $id)->first();
+    // public function showone($id){
+    //     $user = User::where('_id', $id)->first();
 
-        return response()->json($user);
+    //     return response()->json($user);
+    // }
+
+    //DELETE USER ACCOUNT
+    public function delete(){
+        $user = Auth::id();
+
+        $delete = User::where('_id', $id)->delete();
+        
+        return response()->json(['Account Deleted Successfully']);
     }
 
 

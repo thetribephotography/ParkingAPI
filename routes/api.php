@@ -27,10 +27,31 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::middleware(['auth'])->group(function(){
+
+    // VEHICLE
     Route::post('/vehicle_register', [VehicleController::class, 'register']);
     Route::get('/vehicle_view', [VehicleController::class, 'view']);
-    Route::get('/vehicle_show{id}', [VehicleController::class, 'show']);
-    Route::post('/vehicle_edit{id}', [VehicleController::class, 'edit']);
-    Route::get('/user_show_all', [UserController::class, 'showall']);
+    Route::get('/vehicle_show/{id}', [VehicleController::class, 'show']);
+    Route::post('/vehicle_edit/{id}', [VehicleController::class, 'edit']);
+    Route::post('/vehicle_delete/{id}', [VehicleController::class, 'delete']);
+    Route::post('/vehicle_choose', [VehicleController::class, 'store']);
+
+
+    // USER
+    Route::get('/user_delete', [UserController::class, 'delete']);
+
+
+    //PARKING
+    Route::get('/spaces', [ParkingController::class, 'space']);
+    Route::post('/pick_space/{id}', [ParkingController::class, 'check']);
+    Route::post('/park', [ParkingController::class, 'park']);
+    Route::get('/history', [ParkingController::class, 'history']);
+    Route::get('/history/{id}', [ParkingController::class, 'view_one']);
+    Route::post('/finish/{id}', [ParkingController::class, 'end']);
+
+
+});
+    
 
 require __DIR__.'/auth.php';

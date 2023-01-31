@@ -14,59 +14,15 @@ use Carbon\Carbon;
 
 class ParkingController extends Controller
 {
-    // public function brain(Request $request $id){
-    //     $validate = $request->validate([
-    //         'vehicle_id' => 'required',
-    //         'space_name' => 'required',
-    //     ]);
-
-    //     $space_name = $request->space_name;
-
-    //     $space_num = Space::where('name', $space_name)->get();
-
-    //     // getting space_id in particular
-    //     $space_id = $space_num->_id;
-
-    //     //getting space array
-    //     $space = $space_num->space;
-        
-    //     //time 
-    //      $time = Carbon::now()->subHour();
-        
-
-    //     $empty = null;
-
-    //     for ($i = 0; $i < count($space); $i++) {
-    //     if ($space[$i] === null && $spaces[$i]['updated_at'] >= $time) {
-    //         $empty = $space[$i];
-    //         break;
-
-    //         return response()->json(['Please Park at Space', $empty]);
-
-    //     }if(!$empty) {
-    //         return response()->json(['No Space found.....Kindly Wait']);
-    //         }
-    //     }
-
-    //     $saveData = new Parking;
-    //     $saveData->vehicle_id = $request->vehicle_id;
-    //     $saveData->space_id = $request->$space_id;
-    //     $saveData->space_number = $request->$empty;
-    //     // $saveData->entered_at =  
-
-
-    // }
-
-
+    //SHOWS ALL PARKING LOT'S TO PARK IN
     public function space(){
         $show_all = Space::all();
 
         return response()->json($show_all);
     }
 
-
+    //CHECKS FOR AVAILABLE PARKING SPACE IN THAT PARKING LOT
     public function check($id){
-
 
         // checks the parking table for currently ocuupied spaces for a particular park
         $closed = Parking::whereNull('left_at')->where('space_id', $id)->get();
@@ -88,49 +44,9 @@ class ParkingController extends Controller
 
             return response()->json($final);
 
-
-
-
-
-                    // $validate = $request->validate([
-        //     'vehicle_id' => 'required',
-        //     // 'space_name' => 'required',
-        // ]); 
-
-        // $space_name = $request->space_name;
-
-        // $space_num = Space::where('id', $space_name)->first();
-
-        // $space_id = Space::where('_id', $id)->first();
-
-
-
-        // getting space_id in particular
-        // $space_id = $space_num->_id;
-
-        //getting space array
-        // $space = $space_id->space;
-        
-        //time 
-        //  $time = Carbon::now()->subHour();
-        
-
-        // $empty = null;
-
-        // for ($i = 0; $i < count($space); $i++) {
-        // if ($space[$i] === null && $spaces[$i]['updated_at'] >= $time) {
-        //     $empty = $space[$i];
-        //     break;
-
-        //     return response()->json(['Please Park at Space', $empty]);
-
-        // }if(!$empty) {
-        //     return response()->json(['No Space found.....Kindly Wait']);
-        //     }
-        // }
-
     }
 
+        // STORES PICKED PARKED SPOT IN DB
         public function park(Request $request, $space_id){
             $validated = $request->validate([
                 'space_num' => 'required',
@@ -158,20 +74,30 @@ class ParkingController extends Controller
 
         }
 
+
+        //SHOWS USER PARKING HISTORY
         public function history(){
             $user = Auth::id();
 
             $history = Parking::where('user_id', $user)->get();
+            
+            if(!history){
+                return response()->json(['You do not have an History Yet!.']);
+            }
 
             return response()->json($history);
         }
 
+        //VIEW DETAILS OF SINGLE PARKING HISTORY
         public function view_one($id){
-            $view = Parking::where('_id', $id)->first();
+            $user = Auth::id();
+
+            $view = Parking::where('_id', $id && 'user_id', $user )->first();
 
             return response()->json($view);
         }
 
+        //UPDATES DB ONCE USER HAS SUCCESSFULLY EXITED ALLOCATED PARKING SPACE
         public function end($id){
             $depart = Parking::where('_id', $id)->first();
 
@@ -182,7 +108,6 @@ class ParkingController extends Controller
             $depart->update();
 
             return response()->json(['Kindly Vacate Your Parked Area Immediately.....Thank You!!']);
-
 
         }
 }
