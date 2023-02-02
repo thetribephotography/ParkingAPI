@@ -17,7 +17,11 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
+        // dd($request);
+
         $request->session()->regenerate();
+
+        // $request->session()->
 
         return response()->noContent();
     }

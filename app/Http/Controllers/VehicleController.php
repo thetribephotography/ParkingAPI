@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;    
 use Jenssegers\Mongodb\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Models\Parking;
@@ -28,11 +28,11 @@ class VehicleController extends Controller
         $reg->user_id = $request->$user;
         $reg->name = $request->name;
         $reg->vehicle_type = $request->vehicle_type;
-        $reg->pate_number = $request->plate_number;
+        $reg->plate_number = $request->plate_number;
 
         $reg->save();
 
-        return response()->json(['Saved Successfully']);
+        return response()->json($$reg, ['Saved Successfully']);
     }
 
     
@@ -69,7 +69,7 @@ class VehicleController extends Controller
 
             $show_one->update();
 
-            return response()->json(['Update Successful']);
+            return response()->json($show_one, ['Update Successful']);
         }
     }
 
