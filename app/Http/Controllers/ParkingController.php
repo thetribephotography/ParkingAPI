@@ -70,7 +70,9 @@ class ParkingController extends Controller
             $store->space_number = $request->space_num;
             $store->entered_at = $time;
 
-            return response()->json(['Saved Successfully']);
+            $store->save();
+
+            return response()->json($store, ['Saved Successfully']);
 
         }
 
