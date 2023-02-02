@@ -23,16 +23,18 @@ class VehicleController extends Controller
 
         $user = Auth::id();
 
+        // $user = session()->get('user');
+
         $reg = new Vehicle;
 
-        $reg->user_id = $request->$user;
+        $reg->user_id = $user;
         $reg->name = $request->name;
         $reg->vehicle_type = $request->vehicle_type;
         $reg->plate_number = $request->plate_number;
 
         $reg->save();
 
-        return response()->json($$reg, ['Saved Successfully']);
+        return response()->json(['message' => $reg], 200);
     }
 
     
@@ -42,7 +44,7 @@ class VehicleController extends Controller
 
         $show = Vehicle::where('user_id', $user)->get();
 
-        return response()->json($show);
+        return response()->json(['message' => $show], 200);
     }
 
     
@@ -50,7 +52,7 @@ class VehicleController extends Controller
     public function show($id){
         $show_one = Vehicle::where('_id', $id)->first();
 
-        return response()->json($show_one);
+        return response()->json(['message' => $show_one], 200);
 
     }
 
@@ -60,7 +62,7 @@ class VehicleController extends Controller
         $show_one = Vehicle::where('_id', $id)->first();
         
         if($request->all() == ''){
-            return response()->json(['No Updates were made']);
+            return response()->json(['message' => 'No Updates were made'], 404);
         } else {
 
             $show_one->name = $request->name;
@@ -69,7 +71,7 @@ class VehicleController extends Controller
 
             $show_one->update();
 
-            return response()->json($show_one, ['Update Successful']);
+            return response()->json(['message' => $show_one], 200);
         }
     }
 
@@ -78,7 +80,7 @@ class VehicleController extends Controller
     public function delete($id){
         $delete = Vehicle::where('_id', $id)->delete();
 
-        return response()->json(['Successfully Deleted']);
+        return response()->json(['message' => 'Successfully Deleted'], 200);
     }
 
 
@@ -94,7 +96,7 @@ class VehicleController extends Controller
 
         session()->put('vehicle_id', $vehicle);
 
-        return response()->json(['I Must Say.....Nice Car!']);
+        return response()->json([ 'message' => 'I Must Say.....Nice Car!'], 200);
     }
 
 }

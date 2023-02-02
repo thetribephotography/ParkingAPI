@@ -18,7 +18,7 @@ class ParkingController extends Controller
     public function space(){
         $show_all = Space::all();
 
-        return response()->json($show_all);
+        return response()->json([ 'message' => $show_all], 200);
     }
 
     //CHECKS FOR AVAILABLE PARKING SPACE IN THAT PARKING LOT
@@ -42,7 +42,7 @@ class ParkingController extends Controller
 
              $this->park($space_id);
 
-            return response()->json($final);
+            return response()->json([ 'message' => $final], 200);
 
     }
 
@@ -72,7 +72,7 @@ class ParkingController extends Controller
 
             $store->save();
 
-            return response()->json($store, ['Saved Successfully']);
+            return response()->json([ 'message' => $store] ,200);
 
         }
 
@@ -84,10 +84,10 @@ class ParkingController extends Controller
             $history = Parking::where('user_id', $user)->get();
             
             if(!history){
-                return response()->json(['You do not have an History Yet!.']);
+                return response()->json(['You do not have an History Yet!.'], 200);
             }
 
-            return response()->json($history);
+            return response()->json([ 'message' => $history], 200);
         }
 
         //VIEW DETAILS OF SINGLE PARKING HISTORY
@@ -96,7 +96,7 @@ class ParkingController extends Controller
 
             $view = Parking::where('_id', $id && 'user_id', $user )->first();
 
-            return response()->json($view);
+            return response()->json([ 'message' => $view], 200);
         }
 
         //UPDATES DB ONCE USER HAS SUCCESSFULLY EXITED ALLOCATED PARKING SPACE
@@ -109,7 +109,7 @@ class ParkingController extends Controller
 
             $depart->update();
 
-            return response()->json(['Kindly Vacate Your Parked Area Immediately.....Thank You!!']);
+            return response()->json([ 'message' => 'Kindly Vacate Your Parked Area Immediately.....Thank You!!']);
 
         }
 }

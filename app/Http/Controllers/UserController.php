@@ -23,7 +23,7 @@ class UserController extends Controller
 
         $delete = User::where('_id', $id)->delete();
         
-        return response()->json(['Account Deleted Successfully']);
+        return response()->json([ 'message' => 'Account Deleted Successfully'], 200);
     }
 
 

@@ -27,7 +27,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['auth', 'api'])->group(function(){
 
     // VEHICLE
     Route::post('/vehicle_register', [VehicleController::class, 'register']);
