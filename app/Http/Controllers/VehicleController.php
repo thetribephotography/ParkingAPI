@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Parking;
 use App\Models\User;
 use App\Models\Vehicle;
+use Illuminate\Support\Facades\Session;
+
 
 class VehicleController extends Controller
 {
@@ -22,8 +24,6 @@ class VehicleController extends Controller
         ]);
 
         $user = Auth::id();
-
-        // $user = session()->get('user');
 
         $reg = new Vehicle;
 

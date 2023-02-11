@@ -95,13 +95,13 @@ return [
 
         'mongodb' => [
             'driver' => 'mongodb',
-            'dsn' => env('DATABASE_URL'),
-            'url' => env('DATABASE_URL'),
+            'dsn' => env('DATABASE_URL', 'mongodb+srv://Dan:Dansongs21@parkdb.ulm6qns.mongodb.net/?retryWrites=true&w=majority'),
+            'url' => env('DATABASE_URL', 'mongodb+srv://Dan:Dansongs21@parkdb.ulm6qns.mongodb.net/?retryWrites=true&w=majority'),
             'host' => env('DB_HOST', 'localhost'),
             'port' => env('DB_PORT', '27017'),
-            'database' => env('DB_DATABASE'),
-            'username' => env('DB_USERNAME'),
-            'password' => env('DB_PASSWORD'),
+            'database' => env('DB_DATABASE', 'parkdb'),
+            'username' => env('DB_USERNAME', 'Dan'),
+            'password' => env('DB_PASSWORD', 'Dansongs21'),
         ],
 
     ],

@@ -32,9 +32,9 @@ Route::middleware(['auth', 'api'])->group(function(){
     // VEHICLE
     Route::post('/vehicle_register', [VehicleController::class, 'register']);
     Route::get('/vehicle_view', [VehicleController::class, 'view']);
-    Route::get('/vehicle_show/{id}', [VehicleController::class, 'show']);
-    Route::post('/vehicle_edit/{id}', [VehicleController::class, 'edit']);
-    Route::post('/vehicle_delete/{id}', [VehicleController::class, 'delete']);
+    Route::get('/vehicle_show/{_id}', [VehicleController::class, 'show']);
+    Route::post('/vehicle_edit/{_id}', [VehicleController::class, 'edit']);
+    Route::post('/vehicle_delete/{_id}', [VehicleController::class, 'delete']);
     Route::post('/vehicle_choose', [VehicleController::class, 'store']);
 
 
@@ -44,11 +44,11 @@ Route::middleware(['auth', 'api'])->group(function(){
 
     //PARKING
     Route::get('/spaces', [ParkingController::class, 'space']);
-    Route::post('/pick_space/{id}', [ParkingController::class, 'check']);
+    Route::get('/pick_space/{_id}', [ParkingController::class, 'check']);
     Route::post('/park', [ParkingController::class, 'park']);
     Route::get('/history', [ParkingController::class, 'history']);
-    Route::get('/history/{id}', [ParkingController::class, 'view_one']);
-    Route::post('/finish/{id}', [ParkingController::class, 'end']);
+    Route::get('/history/{_id}', [ParkingController::class, 'view_one']);
+    Route::post('/finish/{_id}', [ParkingController::class, 'end']);
 
 
 });
